@@ -2,4 +2,8 @@ repositories:
   control_msgs:
     type: git
     url: https://github.com/ros-controls/control_msgs
-    version: foxy-devel
+    version: foxy-devel  
+  autoware_msgs:
+    type: git
+    url: https://github.com/autowarefoundation/autoware_msgs.git
+    version: 1.2.0
