@@ -42,16 +42,16 @@ This package support the usage of micro-ROS on top of two different middlewares:
    #######################################
    # micro-ROS addons
    #######################################
-   LDFLAGS += micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/libmicroros.a
-   C_INCLUDES += -Imicro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include
+   LDFLAGS += autoware_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/libmicroros.a
+   C_INCLUDES += -Iautoware_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include
 
    # Add micro-ROS utils
-   C_SOURCES += micro_ros_stm32cubemx_utils/extra_sources/custom_memory_manager.c
-   C_SOURCES += micro_ros_stm32cubemx_utils/extra_sources/microros_allocators.c
-   C_SOURCES += micro_ros_stm32cubemx_utils/extra_sources/microros_time.c
+   C_SOURCES += autoware_micro_ros_stm32cubemx_utils/extra_sources/custom_memory_manager.c
+   C_SOURCES += autoware_micro_ros_stm32cubemx_utils/extra_sources/microros_allocators.c
+   C_SOURCES += autoware_micro_ros_stm32cubemx_utils/extra_sources/microros_time.c
 
    # Set here the custom transport implementation
-   C_SOURCES += micro_ros_stm32cubemx_utils/extra_sources/microros_transports/dma_transport.c
+   C_SOURCES += autoware_micro_ros_stm32cubemx_utils/extra_sources/microros_transports/dma_transport.c
 
    print_cflags:
       @echo $(CFLAGS)
@@ -62,7 +62,7 @@ This package support the usage of micro-ROS on top of two different middlewares:
 
    ```bash
    docker pull microros/micro_ros_static_library_builder:humble
-   docker run -it --rm -v $(pwd):/project --env MICROROS_LIBRARY_FOLDER=micro_ros_stm32cubemx_utils/microros_static_library microros/micro_ros_static_library_builder:humble
+   docker run -it --rm -v $(pwd):/project --env MICROROS_LIBRARY_FOLDER=autoware_micro_ros_stm32cubemx_utils/microros_static_library microros/micro_ros_static_library_builder:humble
    ```
 
 1. Modify your `main.c` to use micro-ROS. An example application can be found in `sample_main.c`.
@@ -80,12 +80,12 @@ micro-ROS can be used with SMT32CubeIDE following these steps:
 2. Go to `Project -> Settings -> C/C++ Build -> Settings -> Build Steps Tab` and in `Pre-build steps` add:
 
    ```bash
-   docker pull microros/micro_ros_static_library_builder:humble && docker run --rm -v ${workspace_loc:/${ProjName}}:/project --env MICROROS_LIBRARY_FOLDER=micro_ros_stm32cubemx_utils/microros_static_library_ide microros/micro_ros_static_library_builder:humble
+   docker pull microros/micro_ros_static_library_builder:humble && docker run --rm -v ${workspace_loc:/${ProjName}}:/project --env MICROROS_LIBRARY_FOLDER=autoware_micro_ros_stm32cubemx_utils/microros_static_library_ide microros/micro_ros_static_library_builder:humble
    ```
 
-3. Add micro-ROS include directory. In `Project -> Settings -> C/C++ Build -> Settings -> Tool Settings Tab -> MCU GCC Compiler -> Include paths` add `micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros/include`
+3. Add micro-ROS include directory. In `Project -> Settings -> C/C++ Build -> Settings -> Tool Settings Tab -> MCU GCC Compiler -> Include paths` add `autoware_micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros/include`
 4. Add the micro-ROS precompiled library. In `Project -> Settings -> C/C++ Build -> Settings -> MCU GCC Linker -> Libraries`
-      - add `<ABSOLUTE_PATH_TO>/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros` in `Library search path (-L)`
+      - add `<ABSOLUTE_PATH_TO>/autoware_micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros` in `Library search path (-L)`
       - add `microros` in `Libraries (-l)`
 5. Add the following source code files to your project, dragging them to source folder:
       - `extra_sources/microros_time.c`
