@@ -1,11 +1,11 @@
 ![banner](.images/banner-dark-theme.png#gh-dark-mode-only)
 ![banner](.images/banner-light-theme.png#gh-light-mode-only)
 
-# micro-ROS for STM32CubeMX/IDE
+# Autoware Vehicle Interface with micro-ROS for STM32CubeMX/IDE
 
-This tool aims to ease the micro-ROS integration in a STM32CubeMX/IDE project.
+This tool aims to ease the micro-ROS integration in a STM32CubeMX/IDE project as an Vehicle Interface for Autoware system.
 
-- [micro-ROS for STM32CubeMX/IDE](#micro-ros-for-stm32cubemxide)
+- [Autoware Vehicle Interface with micro-ROS for STM32CubeMX/IDE](#autoware-vehicle-interface-with-micro-ros-for-stm32cubemxide)
   - [Middlewares available](#middlewares-available)
   - [Using this package with STM32CubeMX](#using-this-package-with-stm32cubemx)
   - [Using this package with STM32CubeIDE](#using-this-package-with-stm32cubeide)
