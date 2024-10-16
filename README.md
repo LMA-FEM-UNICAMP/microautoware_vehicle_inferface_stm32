@@ -1,11 +1,11 @@
 ![banner](.images/banner-dark-theme.png#gh-dark-mode-only)
 ![banner](.images/banner-light-theme.png#gh-light-mode-only)
 
-# Autoware Vehicle Interface with micro-ROS for STM32CubeMX/IDE
+# MicroAutoware: Autoware Vehicle Interface with micro-ROS for STM32CubeMX/IDE
 
 This tool aims to ease the micro-ROS integration in a STM32CubeMX/IDE project as an Vehicle Interface for Autoware system.
 
-- [Autoware Vehicle Interface with micro-ROS for STM32CubeMX/IDE](#autoware-vehicle-interface-with-micro-ros-for-stm32cubemxide)
+- [MicroAutoware: Autoware Vehicle Interface with micro-ROS for STM32CubeMX/IDE](#microautoware-autoware-vehicle-interface-with-micro-ros-for-stm32cubemxide)
   - [Middlewares available](#middlewares-available)
   - [Using this package with STM32CubeMX](#using-this-package-with-stm32cubemx)
   - [Using this package with STM32CubeIDE](#using-this-package-with-stm32cubeide)
@@ -42,16 +42,16 @@ This package support the usage of micro-ROS on top of two different middlewares:
    #######################################
    # micro-ROS addons
    #######################################
-   LDFLAGS += autoware_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/libmicroros.a
-   C_INCLUDES += -Iautoware_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include
+   LDFLAGS += microautoware_vehicle_inferface_stm32/microros_static_library/libmicroautoware/libmicroautoware.a
+   C_INCLUDES += -Imicroautoware_vehicle_inferface_stm32/microros_static_library/libmicroautoware/microros_include
 
    # Add micro-ROS utils
-   C_SOURCES += autoware_micro_ros_stm32cubemx_utils/extra_sources/custom_memory_manager.c
-   C_SOURCES += autoware_micro_ros_stm32cubemx_utils/extra_sources/microros_allocators.c
-   C_SOURCES += autoware_micro_ros_stm32cubemx_utils/extra_sources/microros_time.c
+   C_SOURCES += microautoware_vehicle_inferface_stm32/extra_sources/custom_memory_manager.c
+   C_SOURCES += microautoware_vehicle_inferface_stm32/extra_sources/microros_allocators.c
+   C_SOURCES += microautoware_vehicle_inferface_stm32/extra_sources/microros_time.c
 
    # Set here the custom transport implementation
-   C_SOURCES += autoware_micro_ros_stm32cubemx_utils/extra_sources/microros_transports/dma_transport.c
+   C_SOURCES += microautoware_vehicle_inferface_stm32/extra_sources/microros_transports/dma_transport.c
 
    print_cflags:
       @echo $(CFLAGS)
@@ -62,7 +62,7 @@ This package support the usage of micro-ROS on top of two different middlewares:
 
    ```bash
    docker pull microros/micro_ros_static_library_builder:humble
-   docker run -it --rm -v $(pwd):/project --env MICROROS_LIBRARY_FOLDER=autoware_micro_ros_stm32cubemx_utils/microros_static_library microros/micro_ros_static_library_builder:humble
+   docker run -it --rm -v $(pwd):/project --env MICROROS_LIBRARY_FOLDER=microautoware_vehicle_inferface_stm32/microros_static_library microros/micro_ros_static_library_builder:humble
    ```
 
 1. Modify your `main.c` to use micro-ROS. An example application can be found in `sample_main.c`.
@@ -80,12 +80,12 @@ micro-ROS can be used with SMT32CubeIDE following these steps:
 2. Go to `Project -> Settings -> C/C++ Build -> Settings -> Build Steps Tab` and in `Pre-build steps` add:
 
    ```bash
-   docker pull microros/micro_ros_static_library_builder:humble && docker run --rm -v ${workspace_loc:/${ProjName}}:/project --env MICROROS_LIBRARY_FOLDER=autoware_micro_ros_stm32cubemx_utils/microros_static_library_ide microros/micro_ros_static_library_builder:humble
+   docker pull microros/micro_ros_static_library_builder:humble && docker run --rm -v ${workspace_loc:/${ProjName}}:/project --env MICROROS_LIBRARY_FOLDER=microautoware_vehicle_inferface_stm32/microros_static_library_ide microros/micro_ros_static_library_builder:humble
    ```
 
-3. Add micro-ROS include directory. In `Project -> Settings -> C/C++ Build -> Settings -> Tool Settings Tab -> MCU GCC Compiler -> Include paths` add `autoware_micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros/include`
+3. Add micro-ROS include directory. In `Project -> Settings -> C/C++ Build -> Settings -> Tool Settings Tab -> MCU GCC Compiler -> Include paths` add `microautoware_vehicle_inferface_stm32/microros_static_library_ide/libmicroautoware/include`
 4. Add the micro-ROS precompiled library. In `Project -> Settings -> C/C++ Build -> Settings -> MCU GCC Linker -> Libraries`
-      - add `<ABSOLUTE_PATH_TO>/autoware_micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros` in `Library search path (-L)`
+      - add `<ABSOLUTE_PATH_TO>/microautoware_vehicle_inferface_stm32/microros_static_library_ide/libmicroautoware` in `Library search path (-L)`
       - add `microros` in `Libraries (-l)`
 5. Add the following source code files to your project, dragging them to source folder:
       - `extra_sources/microros_time.c`
