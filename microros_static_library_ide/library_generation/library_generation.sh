@@ -79,7 +79,7 @@ find firmware/build/include/ -name "*.c"  -delete
 rm -rf $BASE_PATH/libmicroautoware
 mkdir -p $BASE_PATH/libmicroautoware/include
 cp -R firmware/build/include/* $BASE_PATH/libmicroautoware/include/
-cp -R firmware/build/libmicroautoware.a $BASE_PATH/libmicroautoware/libmicroautoware.a
+cp -R firmware/build/libmicroros.a $BASE_PATH/libmicroautoware/libmicroautoware.a
 
 ######## Fix include paths  ########
 pushd firmware/mcu_ws > /dev/null
